@@ -11,7 +11,7 @@ exports.getAllAccounts = (req, res, next) => {
 };
 
 exports.getOneAccount = (req, res, next) => {
-    User.findOne({ where: { id: userId }, raw: true })
+    User.findOne({ where: { id: req.params.id }, raw: true })
         .then(user => {
             if (user === null) {
                 return res.status(404).json({ message: 'Utilisateur introuvable' })
