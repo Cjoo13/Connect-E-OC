@@ -70,7 +70,7 @@ exports.signup = (req, res, next) => {
     if (req.body.name == null || req.body.firstName == null || req.body.mail == null || req.body.password == null) {
         return res.status(400).json({ 'error': 'Données incomplètes' });
     }
-    User.findOne({ where: { email: req.body.mail }, raw: true })
+    User.findOne({ where: { mail: req.body.mail }, raw: true })
         .then(user => {
 
             if (user !== null) {
@@ -82,11 +82,11 @@ exports.signup = (req, res, next) => {
                     req.body.password = hash
                     User.create(req.body)
                         .then(user => res.json({ message: 'Utilisateur crée' }))
-                        .catch(err => res.status(500).json({ error }))
+                        .catch(err => res.status(500).json({ error: err }))
                 })
                 .catch(err => res.status(500).json({ message: 'Problème lors du hash du mot de passe' }))
         })
-        .catch(err => res.status(500).json({ error }))
+        .catch(err => res.status(500).json({ error: err }))
 };
 
 exports.login = (req, res, next) => {

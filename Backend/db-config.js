@@ -9,5 +9,9 @@ let sequelize = new Sequelize(
     }
 );
 
+sequelize.sync(err => {
+    console.log('Problème de synchronisation avec la base de données');
+});
+
 
 module.exports = sequelize;
