@@ -23,7 +23,7 @@ exports.getOneAccount = (req, res, next) => {
 };
 
 exports.modifyAccount = (req, res, next) => {
-    User.findOne({ id: req.params.id })
+    User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
             name = req.body.name;
             firstname = req.body.firstname;
@@ -35,7 +35,7 @@ exports.modifyAccount = (req, res, next) => {
 };
 
 exports.deleteInTrash = (req, res, next) => {
-    User.findOne({ id: req.params.id })
+    User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
             User.destroy({ id: req.params.id })
                 .then(() => res.status(200).json({ message: 'Compte mis à la poubelle' }))
@@ -46,7 +46,7 @@ exports.deleteInTrash = (req, res, next) => {
 };
 
 exports.restoreAccount = (req, res, next) => {
-    User.findOne({ id: req.params.id })
+    User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
             User.restore({ id: req.params.id })
                 .then(() => res.status(200).json({ message: 'Compte restauré' }))
@@ -57,7 +57,7 @@ exports.restoreAccount = (req, res, next) => {
 };
 
 exports.deleteAccount = (req, res, next) => {
-    User.findOne({ id: req.params.id })
+    User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
             User.destroy({ where: {id: req.params.id}, force: true })
                 .then(() => res.status(200).json({ message: 'Compte supprimé' }))
@@ -76,8 +76,7 @@ exports.signup = (req, res, next) => {
             if (user !== null) {
                 return res.status(409).json({ message: 'Cet utilisateur existe déjà' })
             }
-
-            bcrypt.hash(password, 10)
+            bcrypt.hash(req.body.password, 10)
                 .then(hash => {
                     req.body.password = hash
                     User.create(req.body)
@@ -90,7 +89,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.mail })
+    User.findOne({ mail: req.body.mail })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });
@@ -105,7 +104,7 @@ exports.login = (req, res, next) => {
                         token: jwt.sign(
                             { userId: user._id },
                             process.env.SECRET_TOKEN,
-                            { expiresIn: '24h' }
+                            { expiresIn: '1h' }
                         )
                     });
                 })

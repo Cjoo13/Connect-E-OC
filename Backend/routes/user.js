@@ -5,7 +5,7 @@ const userCtrl = require('../controllers/user');
 const auth = require('../middleware/auth');
 
 router.put('/signup', userCtrl.signup);
-router.put('/login', userCtrl.login);
+router.post('/login', userCtrl.login);
 router.get('/', auth, userCtrl.getAllAccounts);
 router.get('/:id', auth, userCtrl.getOneAccount);
 router.patch('/:id', auth, userCtrl.modifyAccount);
