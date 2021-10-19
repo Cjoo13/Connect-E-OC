@@ -50,7 +50,7 @@ server.on('listening', () => {
 DB.authenticate()
     .then(() => console.log('Connexion à la base de données réussie'))
     .then(() => {
-        app.listen(process.env.SERVER_PORT, () => {
+        server.listen(process.env.SERVER_PORT, () => {
             console.log(`Running on port ${process.env.SERVER_PORT}`)
         });
     })
