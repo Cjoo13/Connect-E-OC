@@ -1,8 +1,10 @@
 <template>
         <nav id="user_menu">
-            <router-link to="/modify-account" title="Modifier votre compte"></router-link>
-            <router-link to="/delete-account" title="Supprimer votre compte"></router-link>
-            <router-link to="/" title="Se déconnecter"><i @click="deconnect" class="fas fa-door-open" title="Déconnexion"></i></router-link>
+            <ul>
+              <li><router-link to="/modify-account" title="Modifier votre compte">Modifier votre compte</router-link></li>
+              <li><router-link to="/delete-account" title="Supprimer votre compte">Supprimer votre compte</router-link></li>
+              <li><router-link to="/" title="Se déconnecter" @click="deconnect">Se déconnecter</router-link></li>
+            </ul>
         </nav>
 </template>
 
@@ -11,7 +13,6 @@ export default {
     name: "UserMenu",
     methods: {
         deconnect() {
-            localStorage.clear();
             this.$router.push("/");
         }
     }
