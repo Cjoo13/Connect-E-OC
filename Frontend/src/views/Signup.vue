@@ -1,8 +1,8 @@
 <template>
      
     <div class="login_signup_setup">          
-        <h2>Pour rejoindre la communauté, merci de remplir ce formulaire</h2>
-        <form v-on:submit.prevent="signup" id="form_signup" >
+        <h2>Veuillez remplir ce formulaire afin de créer votre compte</h2>
+        <form v-on:submit.prevent="signup" id="form" >
           <div class="form__cartouche">
             <label for="name">Nom :</label>
             <input type="text" id="name" name="name" class="form__input"/>
@@ -31,7 +31,7 @@ export default {
     name: 'Signup',
     data() {
         return {
-            inputSignup: {
+            signupInput: {
                 name: "",
                 firstName: "",
                 mail: "",
@@ -41,17 +41,17 @@ export default {
     },
     methods: {
         signup() {
-            let inputDatas = {
-                "name": this.inputSignup.name,
-                "firstName": this.inputSignup.firstName,
-                "mail": this.inputSignup.mail,
-                "password": this.inputSignup.password
+            let signupDatas = {
+                "name": this.signupInput.name,
+                "firstName": this.signupInput.firstName,
+                "mail": this.signupInput.mail,
+                "password": this.signupInput.password
             }
-            console.log(inputDatas)
+            console.log(signupDatas)
             let url = "http://localhost:3000/api/auth/signup"
             let options = {
                 method: "POST",
-                body: JSON.stringify(inputDatas),
+                body: JSON.stringify(signupDatas),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -63,7 +63,7 @@ export default {
                     localStorage.setItem("userId", res.userId);
                     localStorage.setItem("token", res.token);
                     console.log(localStorage)
-                    this.$router.push("/");
+                    this.$router.push("/")
                 })
                 .catch(error => console.log(error))
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="login_signup_setup">   
         <h2>Connectez-vous à votre compte personnel !</h2>
-        <form id="form_login" >
+        <form v-on:submit.prevent="login" id="form_login" >
             <div class="form__cartouche">
                 <label for="mail">E-mail :</label>
                 <input type="mail" id="mail" name="mail" class="form__input"/>
@@ -10,7 +10,7 @@
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" class="form__input"/>
             </div>   
-            <button @click="login" type="submit">Se connecter</button>                                     
+            <button type="submit">Se connecter</button>                                     
         </form>        
         <nav class="nav_login_signup"><p>Vous n'avez pas de compte ? <router-link to="/signup">Inscrivez vous !</router-link></p></nav>
     </div>  
@@ -22,7 +22,7 @@ export default {
     name: 'Login',
     data() {
         return {
-            inputLogin: {
+            loginInput: {
                 email: "",
                 password: ""
             }
@@ -31,8 +31,8 @@ export default {
     methods: {
         login() {
             let loginDatas = {
-                "email": this.inputLogin.email,
-                "password": this.inputLogin.password
+                "email": this.loginInput.email,
+                "password": this.loginInput.password
             }
             console.log(loginDatas)
             let url = "http://localhost:3000/api/auth/login"
@@ -52,7 +52,7 @@ export default {
                         console.log(localStorage)
                         this.$router.push("/account");
                     } else {
-                        alert(" 🚨 Mot de passe incorrect ! ");
+                        alert("Mot de passe incorrect ! ");
                     }
                 })
                 .catch(error => console.log(error))

@@ -3,7 +3,6 @@ import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Account from '../views/Account.vue'
 import ModifyAccount from '../views/ModifyAccount.vue'
-import DeleteAccount from '../views/DeleteAccount.vue'
 
 const routes = [
   {
@@ -22,14 +21,9 @@ const routes = [
     component: Account,
   },
   {
-    path: '/modify-account',
+    path: '/modify_account',
     name: 'ModifyAccount',
     component: ModifyAccount,
-  },
-  {
-    path: '/delete-account',
-    name: 'DeleteAccount',
-    component: DeleteAccount
   }
 ]
 
