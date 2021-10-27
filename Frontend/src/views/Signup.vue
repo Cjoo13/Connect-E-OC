@@ -2,7 +2,7 @@
      
     <div class="login_signup_setup">          
         <h2>Veuillez remplir ce formulaire afin de créer votre compte</h2>
-        <form v-on:submit.prevent="signup" id="form" >
+        <form v-on:submit.prevent="signup" class="form" >
           <div class="form__cartouche">
             <label for="name">Nom :</label>
             <input type="text" id="name" name="name" class="form__input"/>
@@ -50,7 +50,7 @@ export default {
             console.log(signupDatas)
             let url = "http://localhost:3000/api/auth/signup"
             let options = {
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify(signupDatas),
                 headers: {
                     'Content-Type': 'application/json'

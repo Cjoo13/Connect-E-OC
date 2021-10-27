@@ -1,28 +1,42 @@
 <template>
   <div id="app">
+
+    <header>
+      <img src="./assets/logo-header.png" id="logo_groupomania" alt="Logo Groupomania" />
+    </header>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
 
+<script>
+</script>
+
 <style lang="scss">
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+header {
+  display: flex;
+  height: 30%;
+}
+header img {
+  width: 25%;
+  margin: auto;
+}
+@media screen and (max-width: 768px) {
+  header img {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 450px) {
+  header img {
+    width: 50%;
   }
 }
 </style>

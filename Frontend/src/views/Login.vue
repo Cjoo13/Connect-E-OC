@@ -1,7 +1,7 @@
 <template>
     <div class="login_signup_setup">   
         <h2>Connectez-vous à votre compte personnel !</h2>
-        <form v-on:submit.prevent="login" id="form_login" >
+        <form v-on:submit.prevent="login" class="form" >
             <div class="form__cartouche">
                 <label for="mail">E-mail :</label>
                 <input type="mail" id="mail" name="mail" class="form__input"/>
@@ -10,7 +10,7 @@
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" class="form__input"/>
             </div>   
-            <button type="submit">Se connecter</button>                                     
+            <button>Se connecter</button>                                     
         </form>        
         <nav class="nav_login_signup"><p>Vous n'avez pas de compte ? <router-link to="/signup">Inscrivez vous !</router-link></p></nav>
     </div>  
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             loginInput: {
-                email: "",
+                mail: "",
                 password: ""
             }
         }
@@ -31,7 +31,7 @@ export default {
     methods: {
         login() {
             let loginDatas = {
-                "email": this.loginInput.email,
+                "mail": this.loginInput.mail,
                 "password": this.loginInput.password
             }
             console.log(loginDatas)
@@ -62,4 +62,34 @@ export default {
 </script>
 
 <style lang="scss">
+.login_signup_setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    &__cartouche {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 15px;
+        width: 55%
+    }
+    &__input {
+        margin-left: 10px;
+    }
+}
+
+button {
+    display: flex;
+    align-self: center;
+}
 </style>
