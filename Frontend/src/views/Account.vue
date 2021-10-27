@@ -3,7 +3,7 @@
          <UserMenu></UserMenu>
 
             <div class="account_setup">
-                <h2>Bienvenue sur votre espace personnel {{ userAccount.firstName }} {{ userAccount.name }}</h2> 
+                <h2>Bienvenue sur votre espace personnel, {{ userAccount.firstName }} {{ userAccount.name }}</h2> 
             </div>  
      </section>
 </template>

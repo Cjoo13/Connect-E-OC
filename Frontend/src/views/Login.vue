@@ -81,7 +81,7 @@ export default {
         align-items: center;
         justify-content: flex-end;
         margin-bottom: 15px;
-        width: 55%
+        width: 38%
     }
     &__input {
         margin-left: 10px;
@@ -91,5 +91,9 @@ export default {
 button {
     display: flex;
     align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100px;
+    justify-content: center;
 }
 </style>

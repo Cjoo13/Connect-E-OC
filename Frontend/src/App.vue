@@ -28,6 +28,7 @@ header {
 header img {
   width: 25%;
   margin: auto;
+  margin-top: -60px;
 }
 @media screen and (max-width: 768px) {
   header img {
