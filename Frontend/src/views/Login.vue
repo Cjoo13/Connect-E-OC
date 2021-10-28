@@ -4,11 +4,11 @@
         <form v-on:submit.prevent="login" class="form" >
             <div class="form__cartouche">
                 <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail" class="form__input"/>
+                <input type="mail" id="mail" name="mail" class="form__input" v-model="loginInput.mail"/>
             </div>
             <div class="form__cartouche">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" class="form__input"/>
+                <input type="password" id="password" name="password" class="form__input" v-model="loginInput.password"/>
             </div>   
             <button>Se connecter</button>                                     
         </form>        
@@ -51,9 +51,7 @@ export default {
                         localStorage.setItem("token", res.token)
                         console.log(localStorage)
                         this.$router.push("/account");
-                    } else {
-                        alert("Mot de passe incorrect ! ");
-                    }
+                    } 
                 })
                 .catch(error => console.log(error))
         }
