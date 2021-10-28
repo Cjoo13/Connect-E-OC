@@ -3,14 +3,14 @@
         <h2>Connectez-vous à votre compte personnel !</h2>
         <form v-on:submit.prevent="login" class="form" >
             <div class="form__cartouche">
-                <label for="mail">E-mail :</label>
-                <input type="mail" id="mail" name="mail" class="form__input" v-model="loginInput.mail"/>
+                <label for="email">E-mail :</label>
+                <input type="email" id="mail" name="mail" class="form__input" required v-model="loginInput.mail"/>
             </div>
             <div class="form__cartouche">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" class="form__input" v-model="loginInput.password"/>
+                <input type="password" id="password" name="password" class="form__input" required v-model="loginInput.password"/>
             </div>   
-            <button>Se connecter</button>                                     
+            <button type="submit">Se connecter</button>                                     
         </form>        
         <nav class="nav_login_signup"><p>Vous n'avez pas de compte ? <router-link to="/signup">Inscrivez vous !</router-link></p></nav>
     </div>  

@@ -5,19 +5,19 @@
         <form v-on:submit.prevent="signup" class="form" >
           <div class="form__cartouche">
             <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" class="form__input" v-model="signupInput.name"/>
+            <input type="text" id="name" name="name" class="form__input" required v-model="signupInput.name"/>
           </div>
           <div class="form__cartouche">
             <label for="firstname">Prénom :</label>
-            <input type="text" id="firstname" name="firstname" class="form__input" v-model="signupInput.firstName"/>
+            <input type="text" id="firstname" name="firstname" class="form__input" required v-model="signupInput.firstName"/>
           </div> 
           <div class="form__cartouche">
-            <label for="mail">E-mail :</label>
-            <input type="mail" id="mail" name="mail" class="form__input" v-model="signupInput.mail"/>
+            <label for="email">E-mail :</label>
+            <input type="email" id="mail" name="mail" class="form__input" required v-model="signupInput.mail"/>
           </div>
           <div class="form__cartouche">
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" class="form__input" v-model="signupInput.password"/>
+            <input type="password" id="password" name="password" class="form__input" required v-model="signupInput.password"/>
           </div>  
           <button>S'inscrire</button>                                       
         </form> 
