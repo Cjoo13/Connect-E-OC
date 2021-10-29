@@ -1,0 +1,82 @@
+<template>
+    <div class="login_signup_setup">   
+        <h2>Modifiez vos identifiants de connexion</h2>
+        <form v-on:submit.prevent="modifyAccount" class="form" >
+            <div class="form__cartouche">
+                <label for="email">Nouvel e-mail :</label>
+                <input type="email" id="mail" name="mail" class="form__input" required v-model="inputUpdate.mail"/>
+            </div>
+            <div class="form__cartouche">
+                <label for="password">Nouveau mot de passe :</label>
+                <input type="password" id="password" name="password" class="form__input" required v-model="inputUpdate.password"/>
+            </div>   
+            <button>Valider mes changements</button>
+            <button @click="deleteInTrash">Désactiver mon compte</button>                                     
+        </form> 
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'ModifyAccount',
+    data() {
+        return {
+            userUpdate: {
+                "userId": localStorage.getItem("userId"),
+                "mail": "",
+                "password": ""
+            },
+            inputUpdate: {
+                "mail": "",
+                "password": ""
+            }
+        }
+    },
+    methods: {
+         modifyAccount() {
+            let updateDatas = {
+                "mail" : this.inputUpdate.mail,
+                "password": this.inputUpdate.password
+            }
+            let url = "http://localhost:3000/api/auth/${ this.userUpdate.userId }`;"
+            let options = {
+                method: "PATCH",
+                body: JSON.stringify(updateDatas),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            fetch(url, options)
+                .then(response => response.json())
+                .then(data => {
+                    this.userUpdate.mail = data.mail;
+                    this.userUpdate.password = data.password;
+                    alert("Identifiants modifiés !");
+                    this.$router.push("/login");
+                })
+                .catch(error => console.log(error))
+        },
+        
+        deleteInTrash() {
+            let url = `http://localhost:3000/api/auth/trash/${ this.userUpdate.userId }`;
+            let options = {
+                method: "DELETE",
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
+                }
+            };
+            fetch(url, options)
+                .then((response) => {
+                    console.log(response);
+                    localStorage.clear();
+                    alert("Votre compte a bien été désactivé !");
+                })
+                .then(this.$router.push("/signup"))
+                .catch(error => console.log(error))
+        },
+    },
+}
+</script>
+
+<style lang="scss">
+</style>

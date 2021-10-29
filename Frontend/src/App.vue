@@ -2,7 +2,7 @@
   <div id="app">
 
     <header>
-      <img src="./assets/logo-header.png" id="logo_groupomania" alt="Logo Groupomania" />
+      <img src="./assets/logo-header.png" id="logo_header" alt="Logo Groupomania" />
     </header>
     <router-view/>
   </div>
@@ -12,15 +12,20 @@
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body, html {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   height: 100%; 
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 100%;
+  background-color: #d0cece;
+  background-image: url("./assets/business-background.png");
+  background-size: cover;
 }
+
 header {
   display: flex;
   height: 30%;
@@ -28,7 +33,7 @@ header {
 header img {
   width: 25%;
   margin: auto;
-  margin-top: -60px;
+  margin-top: -80px;
 }
 @media screen and (max-width: 768px) {
   header img {

@@ -24,6 +24,23 @@ export default {
             },
         }
     },
+    mounted() {
+        let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
+        let options = {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("token"),
+            }
+        };
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                this.userAccount.firstName = data.firstName;
+                this.userAccount.name = data.name;
+            })
+            .catch(error => console.log(error))
+    },
     methods: {
         getOneAccount() {
             let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;

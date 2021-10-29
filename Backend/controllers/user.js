@@ -25,8 +25,8 @@ exports.getOneAccount = (req, res, next) => {
 exports.modifyAccount = (req, res, next) => {
     User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
-            name = req.body.name;
-            firstname = req.body.firstname;
+            mail = req.body.mail
+            password = req.body.password;
             User.update()         
         .then(() => res.status(201).json({ message: 'Compte modifié !' }))
         .catch(error => res.status(400).json({ error }));
