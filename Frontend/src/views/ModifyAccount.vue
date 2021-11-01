@@ -48,9 +48,8 @@ export default {
             }
             fetch(url, options)
                 .then(response => response.json())
-                .then(data => {
-                    this.userUpdate.mail = data.mail;
-                    this.userUpdate.password = data.password;
+                .then((response) => {
+                    console.log(response);
                     alert("Identifiants modifiés !");
                     this.$router.push("/login");
                 })
