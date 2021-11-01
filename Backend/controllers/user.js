@@ -104,16 +104,27 @@ exports.login = (req, res, next) => {
                         token: jwt.sign(
                             { userId: user._id },
                             process.env.SECRET_TOKEN,
-                            { expiresIn: '300s' }
+                            { expiresIn: '1h' }
                         ),
                         refreshToken: jwt.sign(
                             { userId: user._id },
                             process.env.REFRESH_TOKEN,
-                            { expiresIn: '1y' }
+                            { expiresIn: '2h' }
                         )
                     });
                 })
                 .catch(error => res.status(500).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
+};
+
+exports.refresh = (req, res, next) => {
+    let token = {
+        userId: user._id,
+        token: jwt.sign(
+            { userId: user._id },
+            process.env.SECRET_TOKEN,
+            { expiresIn: '1h' }
+        )
+    };
 };

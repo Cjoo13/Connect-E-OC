@@ -46,10 +46,10 @@ export default {
             fetch(url, options)
                 .then(res => res.json())
                 .then((res) => {
-                    if (res.userId && res.token) {
-                        localStorage.setItem("userId", res.userId)
+                    console.log(res);
+                    if (res.token) {
                         localStorage.setItem("token", res.token)
-                        console.log(localStorage)
+                        console.log(res)
                         this.$router.push("/account");
                     } 
                 })

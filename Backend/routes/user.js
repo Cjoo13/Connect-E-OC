@@ -6,6 +6,7 @@ const auth = require('../middleware/auth');
 
 router.put('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
+router.post('/refresh', auth, userCtrl.refresh);
 router.get('/', auth, userCtrl.getAllAccounts);
 router.get('/:id', auth, userCtrl.getOneAccount);
 router.patch('/:id', auth, userCtrl.modifyAccount);

@@ -12,6 +12,7 @@ export default {
     name: "UserMenu",
     methods: {
         deconnect() {
+            localStorage.removeItem("token");
             this.$router.push("/");
         }
     }
