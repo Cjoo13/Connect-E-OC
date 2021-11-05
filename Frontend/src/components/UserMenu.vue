@@ -1,7 +1,7 @@
 <template>
         <nav id="user_menu">
             <ul>
-              <li><router-link :to="{ name: 'ModifyAccount', params: { id: userAccount.userId } }" title="Modifier votre compte">Modifier votre compte {{ userAccount.userId }}</router-link></li>
+              <li><router-link :to="{ name: 'ModifyAccount', params: { id: userAccount.userId } }" title="Modifier votre compte">Modifier votre compte</router-link></li>
               <li><router-link to="/" title="Se déconnecter" @click="deconnect">Se déconnecter</router-link></li>
             </ul>
         </nav>
