@@ -27,9 +27,13 @@ exports.modifyAccount = (req, res, next) => {
         .then((user) => {
             mail = req.body.mail
             password = req.body.password;
-            User.update()         
-        .then(() => res.status(201).json({ message: 'Compte modifié !' }))
-        .catch(error => res.status(400).json({ error }));
+            bcrypt.hash(req.body.password, 10)
+                .then(hash => {
+                    req.body.password = hash
+                    User.update(req.body, {where: {id: req.params.id}})         
+                        .then(() => res.status(200).json({ message: 'Compte modifié !' }))
+                        .catch(error => res.status(400).json({ error }));
+                })
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -37,7 +41,7 @@ exports.modifyAccount = (req, res, next) => {
 exports.deleteInTrash = (req, res, next) => {
     User.findOne({ where: { id: req.params.id }, raw: true })
         .then((user) => {
-            User.destroy({ id: req.params.id })
+            User.destroy({ where: { id: req.params.id }})
                 .then(() => res.status(200).json({ message: 'Compte mis à la poubelle' }))
                 .catch(error => res.status(400).json({ error }));
         })

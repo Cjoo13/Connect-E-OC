@@ -43,7 +43,8 @@ export default {
                 method: "PATCH",
                 body: JSON.stringify(updateDatas),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
                 }
             }
             fetch(url, options)
