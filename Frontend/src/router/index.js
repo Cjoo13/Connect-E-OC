@@ -16,12 +16,12 @@ const routes = [
     component: Signup,
   },
   {
-    path: '/account',
+    path: '/account/:id',
     name: 'Account',
     component: Account,
   },
   {
-    path: '/modify_account',
+    path: '/modify_account/:id',
     name: 'ModifyAccount',
     component: ModifyAccount,
   }

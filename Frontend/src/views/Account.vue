@@ -1,15 +1,17 @@
 <template>
      <section>
-         <UserMenu></UserMenu>
+         
 
             <div class="account_setup">
                 <h2>Bienvenue sur votre espace personnel, {{ userAccount.firstName }} {{ userAccount.name }}</h2> 
+                <UserMenu></UserMenu>
             </div>  
      </section>
 </template>
 
 <script>
 import UserMenu from '../components/UserMenu'
+import jwt_decode from 'jwt-decode'
 export default {
     name: 'Account',
     components: {
@@ -25,41 +27,24 @@ export default {
         }
     },
     mounted() {
-        let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
-        let options = {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("token"),
-            }
-        };
-        fetch(url, options)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                this.userAccount.firstName = data.firstName;
-                this.userAccount.name = data.name;
-            })
-            .catch(error => console.log(error))
-    },
-    methods: {
-        getOneAccount() {
-            let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
-            let options = {
-                method: "GET",
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                }
-            };
-            fetch(url, options)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    this.userAccount.firstName = data.firstName;
-                    this.userAccount.name = data.name;
-                })
-                .catch(error => console.log(error))
-        },
+        
+        let token = localStorage.getItem("token");
+        let decoded = jwt_decode(token);
+        this.userAccount.firstName = decoded.firstName;
+        this.userAccount.name = decoded.name;
     },
 }
-
 </script>
+
+<style lang="scss">
+
+.account_setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    @media screen and (max-width: 768px) {
+        margin-top: 20px;
+    }
+}
+</style>

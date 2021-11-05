@@ -3,15 +3,15 @@
         <h2>Modifiez vos identifiants de connexion</h2>
         <form v-on:submit.prevent="modifyAccount" class="form" >
             <div class="form__cartouche">
-                <label for="email">Nouvel e-mail :</label>
+                <label for="email">E-mail :</label>
                 <input type="email" id="mail" name="mail" class="form__input" required v-model="inputUpdate.mail"/>
             </div>
             <div class="form__cartouche">
-                <label for="password">Nouveau mot de passe :</label>
+                <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" class="form__input" required v-model="inputUpdate.password"/>
             </div>   
             <button>Valider mes changements</button>
-            <button @click="deleteInTrash">Désactiver mon compte</button>                                     
+            <button @click="deleteInTrash" class="sup_button">Désactiver mon compte</button>                                     
         </form> 
     </div>
 </template>
@@ -22,13 +22,13 @@ export default {
     data() {
         return {
             userUpdate: {
-                "userId": localStorage.getItem("userId"),
-                "mail": "",
-                "password": ""
+                userId: localStorage.getItem("userId"),
+                mail: "",
+                password: ""
             },
             inputUpdate: {
-                "mail": "",
-                "password": ""
+                mail: "",
+                password: ""
             }
         }
     },
@@ -38,7 +38,7 @@ export default {
                 "mail" : this.inputUpdate.mail,
                 "password": this.inputUpdate.password
             }
-            let url = "http://localhost:3000/api/auth/${ this.userUpdate.userId }`;"
+            let url = `http://localhost:3000/api/auth/${ this.userUpdate.userId }`;
             let options = {
                 method: "PATCH",
                 body: JSON.stringify(updateDatas),
@@ -48,10 +48,12 @@ export default {
             }
             fetch(url, options)
                 .then(response => response.json())
-                .then((response) => {
-                    console.log(response);
+                .then(data => {
+                    console.log(data);
+                    this.userUpdate.mail = data.mail;
+                    this.userUpdate.password = data.password;
                     alert("Identifiants modifiés !");
-                    this.$router.push("/login");
+                    this.$router.push("/");
                 })
                 .catch(error => console.log(error))
         },
@@ -78,4 +80,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+.sup_button {
+    background: rgb(209,81,90);
+}
 </style>

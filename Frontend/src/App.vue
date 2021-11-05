@@ -21,28 +21,26 @@ body, html {
 }
 #app {
   height: 100%;
-  background-color: #d0cece;
-  background-image: url("./assets/business-background.png");
   background-size: cover;
+  align-items: center;
+  background: lighten(#d0cece, 15);
 }
 
 header {
   display: flex;
   height: 30%;
+  border-bottom: 20px solid rgb(209,81,90);
 }
 header img {
-  width: 25%;
+  width: 400px;
   margin: auto;
-  margin-top: -80px;
-}
-@media screen and (max-width: 768px) {
-  header img {
-    width: 35%;
+  height: 200px;
+  object-fit: cover;
+  @media screen and (max-width: 768px) {
+    width: 300px;
   }
-}
-@media screen and (max-width: 450px) {
-  header img {
-    width: 50%;
+  @media screen and (max-width: 450px) {
+    width: 300px;
   }
 }
 </style>

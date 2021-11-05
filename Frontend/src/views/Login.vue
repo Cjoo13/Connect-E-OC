@@ -48,9 +48,13 @@ export default {
                 .then((res) => {
                     console.log(res);
                     if (res.token) {
-                        localStorage.setItem("token", res.token)
+                        localStorage.setItem("userId", res.id);
+                        localStorage.setItem("token", res.token);
+                        localStorage.setItem("refreshToken", res.refreshToken);
                         console.log(res)
-                        this.$router.push("/account");
+                        this.$router.push(`/account/${ res.id }`);
+                    } else {
+                        alert("Mail ou mot de passe incorrects, veuillez réessayer");
                     } 
                 })
                 .catch(error => console.log(error))
@@ -64,22 +68,36 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
     h2 {
         font-size: 1.5rem;
         margin-bottom: 30px;
+        @media screen and (max-width: 768px) {
+            margin-left: 20px;
+    }
+    }
+    @media screen and (max-width: 768px) {
+        margin-top: 20px;
     }
 }
 .form {
     display: flex;
     flex-direction: column;
-    width: 50%;
     align-items: center;
     &__cartouche {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         margin-bottom: 15px;
-        width: 38%
+        width: 38%;
+        label {
+            display: flex;
+            justify-content: flex-end;
+            width: 600px
+        }
+        @media screen and (max-width: 768px) {
+    
+        }
     }
     &__input {
         margin-left: 10px;
@@ -87,11 +105,20 @@ export default {
 }
 
 button {
-    display: flex;
-    align-self: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100px;
-    justify-content: center;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    box-shadow: 0px 5px 10px lightgrey;
+    padding: 15px;
+    border-radius: 30px;
+    background: rgb(18,36,66);
+    cursor: pointer;
+    border-width: 0;
+    color: rgb(255,255,255);
+    &:hover {
+        transform: scale(1.02);
+        opacity: 0.9;
+        box-shadow: 3px 3px 12px rgba(0,0,0,.5);
+    }
 }
 </style>

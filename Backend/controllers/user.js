@@ -100,14 +100,14 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'Mot de passe incorrect !' });
                     }
                     res.status(200).json({
-                        userId: user._id,
+                        id: user.id,
                         token: jwt.sign(
-                            { userId: user._id },
+                            { id: user.id, name: user.name, firstName: user.firstName },
                             process.env.SECRET_TOKEN,
                             { expiresIn: '1h' }
                         ),
                         refreshToken: jwt.sign(
-                            { userId: user._id },
+                            { id: user.id },
                             process.env.REFRESH_TOKEN,
                             { expiresIn: '2h' }
                         )
@@ -119,12 +119,16 @@ exports.login = (req, res, next) => {
 };
 
 exports.refresh = (req, res, next) => {
-    let token = {
-        userId: user._id,
-        token: jwt.sign(
-            { userId: user._id },
-            process.env.SECRET_TOKEN,
-            { expiresIn: '1h' }
-        )
-    };
+    User.findOne({ where: { id: req.params.id }, raw: true })
+        .then((user) => {
+            res.status(200).json({
+                id: user.id,
+                token: jwt.sign(
+                    { id: user.id },
+                    process.env.SECRET_TOKEN,
+                    { expiresIn: '1h' }
+                )
+            });
+        })
+        .catch(error => res.status(500).json({ error }));
 };

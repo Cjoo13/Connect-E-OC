@@ -61,7 +61,6 @@ export default {
             fetch(url, options)
                 .then(res => res.json())
                 .then((res) => {
-                    localStorage.setItem("userId", res.userId);
                     localStorage.setItem("token", res.token);
                     console.log(localStorage)
                     this.$router.push("/")
