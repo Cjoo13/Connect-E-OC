@@ -68,7 +68,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     h2 {
         font-size: 1.5rem;
         margin-bottom: 30px;

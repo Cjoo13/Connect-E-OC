@@ -5,6 +5,9 @@
       <img src="./assets/logo-header.png" id="logo_header" alt="Logo Groupomania" />
     </header>
     <router-view/>
+    <footer>
+      <img src="./assets/icon.png" id="logo_header" alt="Logo Groupomania" />
+    </footer>
   </div>
 </template>
 
@@ -17,11 +20,8 @@ body, html {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  height: 100%; 
 }
 #app {
-  height: 100%;
-  background-size: cover;
   align-items: center;
   background: lighten(#d0cece, 15);
 }
@@ -30,6 +30,7 @@ header {
   display: flex;
   height: 30%;
   border-bottom: 20px solid rgb(209,81,90);
+  background-color: rgb(255,255,255);
 }
 header img {
   width: 400px;
@@ -41,6 +42,21 @@ header img {
   }
   @media screen and (max-width: 450px) {
     width: 300px;
+  }
+}
+footer {
+  display: flex;
+  border-top: 20px solid rgb(209,81,90);
+  background-color: rgb(255,255,255);
+}
+footer img {
+  margin: auto;
+  height: 150px;
+  @media screen and (max-width: 768px) {
+    
+  }
+  @media screen and (max-width: 450px) {
+    
   }
 }
 </style>

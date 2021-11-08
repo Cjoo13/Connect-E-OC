@@ -42,9 +42,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     @media screen and (max-width: 768px) {
         margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 </style>

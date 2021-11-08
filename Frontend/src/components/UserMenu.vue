@@ -30,6 +30,7 @@ export default {
 ul {
     text-decoration: none;
 	list-style-type: none;
+    padding-left: 0;
 }
 li {
     margin-bottom: 10px;

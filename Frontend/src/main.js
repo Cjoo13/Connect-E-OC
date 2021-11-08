@@ -7,4 +7,4 @@ import setupInterceptors from './services/setupInterceptors';
 
 setupInterceptors(store);
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(setupInterceptors).use(router).mount('#app')
