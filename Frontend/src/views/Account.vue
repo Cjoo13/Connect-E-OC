@@ -12,7 +12,6 @@
 <script>
 import UserMenu from '../components/UserMenu'
 import axios from 'axios'
-//import jwt_decode from 'jwt-decode'
 export default {
     name: 'Account',
     components: {
@@ -37,14 +36,6 @@ export default {
                 })
                 .catch(error => console.log(error))
         }
-
-    /*mounted() {
-        
-        let token = localStorage.getItem("token");
-        let decoded = jwt_decode(token);
-        this.userAccount.firstName = decoded.firstName;
-        this.userAccount.name = decoded.name;
-    },*/
 }
 </script>
 
