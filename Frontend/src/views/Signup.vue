@@ -41,8 +41,7 @@ export default {
         }
     },
     methods: {
-        signup(a) {
-            console.log(a);
+        signup() {
             let signupDatas = {
                 "name": this.signupInput.name,
                 "firstName": this.signupInput.firstName,

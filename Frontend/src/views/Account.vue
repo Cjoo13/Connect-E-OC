@@ -26,16 +26,16 @@ export default {
             },
         }
     },
-     mounted() {
-            let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
-            axios.get(url)
-                .then(res => {
-                    console.log(res.data.data)
-                    this.userAccount.firstName = res.data.data.firstName;
-                    this.userAccount.name = res.data.data.name;
-                })
-                .catch(error => console.log(error))
-        }
+    mounted() {
+        let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
+        axios.get(url)
+            .then(res => {
+                console.log(res.data.data)
+                this.userAccount.firstName = res.data.data.firstName;
+                this.userAccount.name = res.data.data.name;
+            })
+            .catch(error => console.log(error))
+    }
 }
 </script>
 
