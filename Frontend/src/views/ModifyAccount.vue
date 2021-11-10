@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'ModifyAccount',
     data() {
@@ -39,20 +40,11 @@ export default {
                 "password": this.inputUpdate.password
             }
             let url = `http://localhost:3000/api/auth/${ this.userUpdate.userId }`;
-            let options = {
-                method: "PATCH",
-                body: JSON.stringify(updateDatas),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem("token")
-                }
-            }
-            fetch(url, options)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    this.userUpdate.mail = data.mail;
-                    this.userUpdate.password = data.password;
+            axios.patch(url, updateDatas)
+                .then(res => {
+                    console.log(res.data);
+                    this.userUpdate.mail = res.data.mail;
+                    this.userUpdate.password = res.data.password;
                     alert("Identifiants modifiés !");
                     this.$router.push("/");
                 })
@@ -61,13 +53,7 @@ export default {
         
         deleteInTrash() {
             let url = `http://localhost:3000/api/auth/trash/${ this.userUpdate.userId }`;
-            let options = {
-                method: "DELETE",
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                }
-            };
-            fetch(url, options)
+            axios.delete(url)
                 .then((response) => {
                     console.log(response);
                     localStorage.clear();

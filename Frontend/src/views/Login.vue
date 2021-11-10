@@ -18,6 +18,7 @@
 
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Login',
     data() {
@@ -36,28 +37,22 @@ export default {
             }
             console.log(loginDatas)
             let url = "http://localhost:3000/api/auth/login"
-            let options = {
-                method: "POST",
-                body: JSON.stringify(loginDatas),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            fetch(url, options)
-                .then(res => res.json())
+            axios.post(url, loginDatas)
                 .then((res) => {
-                    console.log(res);
-                    if (res.token) {
-                        localStorage.setItem("userId", res.id);
-                        localStorage.setItem("token", res.token);
-                        localStorage.setItem("refreshToken", res.refreshToken);
+                    console.log(res.data);
+                    if (res.data.token) {
+                        localStorage.setItem("userId", res.data.id);
+                        localStorage.setItem("token", res.data.token);
+                        localStorage.setItem("refreshToken", res.data.refreshToken);
                         console.log(res)
-                        this.$router.push(`/account/${ res.id }`);
-                    } else {
-                        alert("Mail ou mot de passe incorrects, veuillez réessayer");
+                        this.$router.push(`/account/${ res.data.id }`);
+                        
                     } 
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    alert("Mail ou mot de passe incorrects, veuillez réessayer");
+                    console.log(error)
+                })
         }
     }
 }

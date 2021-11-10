@@ -27,6 +27,7 @@
 
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Signup',
     data() {
@@ -50,18 +51,9 @@ export default {
             }
             console.log(signupDatas)
             let url = "http://localhost:3000/api/auth/signup"
-            let options = {
-                method: "PUT",
-                body: JSON.stringify(signupDatas),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            console.log(options)
-            fetch(url, options)
-                .then(res => res.json())
+            axios.put(url, signupDatas)
                 .then((res) => {
-                    localStorage.setItem("token", res.token);
+                    localStorage.setItem("token", res.data.token);
                     console.log(localStorage)
                     this.$router.push("/")
                 })

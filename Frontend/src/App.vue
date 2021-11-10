@@ -52,11 +52,5 @@ footer {
 footer img {
   margin: auto;
   height: 150px;
-  @media screen and (max-width: 768px) {
-    
-  }
-  @media screen and (max-width: 450px) {
-    
-  }
 }
 </style>

@@ -11,7 +11,8 @@
 
 <script>
 import UserMenu from '../components/UserMenu'
-import jwt_decode from 'jwt-decode'
+import axios from 'axios'
+//import jwt_decode from 'jwt-decode'
 export default {
     name: 'Account',
     components: {
@@ -26,13 +27,24 @@ export default {
             },
         }
     },
-    mounted() {
+     mounted() {
+            let url = `http://localhost:3000/api/auth/${ this.userAccount.userId }`;
+            axios.get(url)
+                .then(res => {
+                    console.log(res.data.data)
+                    this.userAccount.firstName = res.data.data.firstName;
+                    this.userAccount.name = res.data.data.name;
+                })
+                .catch(error => console.log(error))
+        }
+
+    /*mounted() {
         
         let token = localStorage.getItem("token");
         let decoded = jwt_decode(token);
         this.userAccount.firstName = decoded.firstName;
         this.userAccount.name = decoded.name;
-    },
+    },*/
 }
 </script>
 
