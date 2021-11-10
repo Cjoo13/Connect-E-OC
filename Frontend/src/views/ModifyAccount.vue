@@ -4,11 +4,11 @@
         <form v-on:submit.prevent="modifyAccount" class="form" >
             <div class="form__cartouche">
                 <label for="email">E-mail :</label>
-                <input type="email" id="mail" name="mail" class="form__input" required v-model="inputUpdate.mail"/>
+                <input type="email" id="mail" name="mail" class="form__input" required v-model="inputUpdate.mail">
             </div>
             <div class="form__cartouche">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" class="form__input" required v-model="inputUpdate.password"/>
+                <input type="password" id="password" name="password" class="form__input" required v-model="inputUpdate.password">
             </div>   
             <button>Valider mes changements</button>
             <button @click="deleteInTrash" class="sup_button">Désactiver mon compte</button>                                     

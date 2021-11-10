@@ -4,11 +4,11 @@
         <form v-on:submit.prevent="login" class="form" >
             <div class="form__cartouche">
                 <label for="email">E-mail :</label>
-                <input type="email" id="mail" name="mail" class="form__input" required v-model="loginInput.mail"/>
+                <input type="email" id="mail" name="mail" class="form__input" required v-model="loginInput.mail">
             </div>
             <div class="form__cartouche">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" class="form__input" required v-model="loginInput.password"/>
+                <input type="password" id="password" name="password" class="form__input" required v-model="loginInput.password">
             </div>   
             <button type="submit">Se connecter</button>                                     
         </form>        
