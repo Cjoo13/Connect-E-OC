@@ -26,7 +26,6 @@ axios.interceptors.response.use((res) => {
         let tt = new Date();
     
         if(token.exp < tt.getTime()){
-        // Si token expiré mais moins de 5 minute
             if(tt.getTime() < token.exp+(5*60)  ){
                 try {
                     const rs = await axios.post("/auth/refresh", {
